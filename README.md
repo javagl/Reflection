@@ -4,7 +4,7 @@ Utility methods for reflection.
 
 The classes in this library offer utility methods for certain common (simple)
 reflection tasks. For more sophisticated tasks like classpath scanning or
-metadata extraction, the [reflections library](`https://github.com/ronmamo/reflections`)
+metadata extraction, the [reflections library](https://github.com/ronmamo/reflections)
 may be used.
  
 
