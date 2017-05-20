@@ -44,7 +44,7 @@ names start with `get`, the following code may be used:
         Methods.getAllOptional(Example.class,
             Members::isPublic, 
             Members::isStatic,
-            f -> f.getName().startsWith("get"));
+            m -> m.getName().startsWith("get"));
 
             
 ## Parsing constructors and methods
