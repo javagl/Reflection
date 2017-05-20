@@ -124,7 +124,7 @@ public class TestMethods
             "Object#equals"
         ));
         
-        assertTrue(TestUtils.debugAssertEquals(expected, actual));
+        assertTrue(Utils.debugAssertEquals(expected, actual));
     }
     
     @Test
@@ -155,7 +155,7 @@ public class TestMethods
             "MethodsTestClass#privateMethodOnlyInChild"
         ));
         
-        assertTrue(TestUtils.debugAssertEquals(expected, actual));
+        assertTrue(Utils.debugAssertEquals(expected, actual));
     }
 
     
@@ -219,7 +219,7 @@ public class TestMethods
             "Object#equals"            
         ));
         
-        assertTrue(TestUtils.debugAssertEquals(expected, actual));
+        assertTrue(Utils.debugAssertEquals(expected, actual));
     }
     
     @Test
@@ -236,7 +236,7 @@ public class TestMethods
             "MethodsTestClass#publicMethodOnlyInChild"
         ));
         
-        assertTrue(TestUtils.debugAssertEquals(expected, actual));
+        assertTrue(Utils.debugAssertEquals(expected, actual));
     }
     
 }

@@ -6,7 +6,7 @@ import java.util.Set;
 /**
  * Utility methods
  */
-class TestUtils
+class Utils
 {
     /**
      * Checks whether the given sets are equal, printing their differences

@@ -1,9 +1,9 @@
 package de.javagl.reflection.testpackage;
 
 @SuppressWarnings("javadoc")
-class TestClass_DefaultClassPublicConstructor
+class DefaultClassWithPublicConstructor
 {
-    public TestClass_DefaultClassPublicConstructor()
+    public DefaultClassWithPublicConstructor()
     {
         // Test constructor
     }

@@ -25,8 +25,8 @@ public class TestConstructors
     public void testGetConstructor() 
     {
         String p = "de.javagl.reflection.testpackage.";
-        Class<?> classWithPrivateConstructor = Classes.forNameOptional(p + "TestClass_PublicClassPrivateConstructor");
-        Class<?> classWithPublicConstructor  = Classes.forNameOptional(p + "TestClass_PublicClassPublicConstructor");
+        Class<?> classWithPrivateConstructor = Classes.forNameOptional(p + "PublicClassWithPrivateConstructor");
+        Class<?> classWithPublicConstructor  = Classes.forNameOptional(p + "PublicClassWithPublicConstructor");
         assertNull   (Constructors.getConstructorOptional(classWithPrivateConstructor));
         assertNotNull(Constructors.getConstructorOptional(classWithPublicConstructor));
     }
@@ -35,8 +35,8 @@ public class TestConstructors
     public void testGetDeclaredConstructor() 
     {
         String p = "de.javagl.reflection.testpackage.";
-        Class<?> classWithPrivateConstructor = Classes.forNameOptional(p + "TestClass_PublicClassPrivateConstructor");
-        Class<?> classWithPublicConstructor  = Classes.forNameOptional(p + "TestClass_PublicClassPublicConstructor");
+        Class<?> classWithPrivateConstructor = Classes.forNameOptional(p + "PublicClassWithPrivateConstructor");
+        Class<?> classWithPublicConstructor  = Classes.forNameOptional(p + "PublicClassWithPublicConstructor");
         assertNotNull(Constructors.getDeclaredConstructorOptional(classWithPrivateConstructor));
         assertNotNull(Constructors.getDeclaredConstructorOptional(classWithPublicConstructor));
     }
@@ -55,7 +55,7 @@ public class TestConstructors
             "public de.javagl.reflection.ConstructorsTestClass(byte)"
         ));
         
-        assertTrue(TestUtils.debugAssertEquals(expected, actual));
+        assertTrue(Utils.debugAssertEquals(expected, actual));
     }
 
     @Test
@@ -76,7 +76,7 @@ public class TestConstructors
             "private de.javagl.reflection.ConstructorsTestClass(long)"
         ));
         
-        assertTrue(TestUtils.debugAssertEquals(expected, actual));
+        assertTrue(Utils.debugAssertEquals(expected, actual));
     }
     
     
@@ -84,8 +84,8 @@ public class TestConstructors
     public void testNewInstance() 
     {
         String p = "de.javagl.reflection.testpackage.";
-        Class<?> classWithPrivateConstructor = Classes.forNameOptional(p + "TestClass_PublicClassPrivateConstructor");
-        Class<?> classWithPublicConstructor  = Classes.forNameOptional(p + "TestClass_PublicClassPublicConstructor");
+        Class<?> classWithPrivateConstructor = Classes.forNameOptional(p + "PublicClassWithPrivateConstructor");
+        Class<?> classWithPublicConstructor  = Classes.forNameOptional(p + "PublicClassWithPublicConstructor");
         Constructor<?> privateConstructor = Constructors.getDeclaredConstructorOptional(classWithPrivateConstructor);
         Constructor<?> publicConstructor  = Constructors.getDeclaredConstructorOptional(classWithPublicConstructor);
         assertNull   (Constructors.newInstanceOptional(privateConstructor));
@@ -96,8 +96,8 @@ public class TestConstructors
     public void testNewInstanceNonAccessible() 
     {
         String p = "de.javagl.reflection.testpackage.";
-        Class<?> classWithPrivateConstructor = Classes.forNameOptional(p + "TestClass_PublicClassPrivateConstructor");
-        Class<?> classWithPublicConstructor  = Classes.forNameOptional(p + "TestClass_PublicClassPublicConstructor");
+        Class<?> classWithPrivateConstructor = Classes.forNameOptional(p + "PublicClassWithPrivateConstructor");
+        Class<?> classWithPublicConstructor  = Classes.forNameOptional(p + "PublicClassWithPublicConstructor");
         Constructor<?> privateConstructor = Constructors.getDeclaredConstructorOptional(classWithPrivateConstructor);
         Constructor<?> publicConstructor  = Constructors.getDeclaredConstructorOptional(classWithPublicConstructor);
         assertNotNull(Constructors.newInstanceNonAccessibleOptional(privateConstructor));

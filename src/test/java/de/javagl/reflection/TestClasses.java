@@ -18,10 +18,10 @@ public class TestClasses
     public void testForName() 
     {
         String p = "de.javagl.reflection.testpackage.";
-        assertNotNull(Classes.forNameOptional(p + "TestClass_DefaultClassPrivateConstructor"));        
-        assertNotNull(Classes.forNameOptional(p + "TestClass_DefaultClassPublicConstructor"));        
-        assertNotNull(Classes.forNameOptional(p + "TestClass_PublicClassPrivateConstructor"));        
-        assertNotNull(Classes.forNameOptional(p + "TestClass_PublicClassPublicConstructor"));        
+        assertNotNull(Classes.forNameOptional(p + "DefaultClassWithPrivateConstructor"));
+        assertNotNull(Classes.forNameOptional(p + "DefaultClassWithPublicConstructor"));
+        assertNotNull(Classes.forNameOptional(p + "PublicClassWithPrivateConstructor"));
+        assertNotNull(Classes.forNameOptional(p + "PublicClassWithPublicConstructor"));
         assertNull   (Classes.forNameOptional(p + "_INVALID_NAME_"));
     }
 
@@ -29,10 +29,10 @@ public class TestClasses
     public void testNewInstance() 
     {
         String p = "de.javagl.reflection.testpackage.";
-        assertNull   (Classes.newInstanceOptional(p + "TestClass_DefaultClassPrivateConstructor"));        
-        assertNull   (Classes.newInstanceOptional(p + "TestClass_DefaultClassPublicConstructor"));        
-        assertNull   (Classes.newInstanceOptional(p + "TestClass_PublicClassPrivateConstructor"));        
-        assertNotNull(Classes.newInstanceOptional(p + "TestClass_PublicClassPublicConstructor"));        
+        assertNull   (Classes.newInstanceOptional(p + "DefaultClassWithPrivateConstructor"));
+        assertNull   (Classes.newInstanceOptional(p + "DefaultClassWithPublicConstructor"));
+        assertNull   (Classes.newInstanceOptional(p + "PublicClassWithPrivateConstructor"));
+        assertNotNull(Classes.newInstanceOptional(p + "PublicClassWithPublicConstructor"));
         assertNull   (Classes.newInstanceOptional(p + "_INVALID_NAME_"));
     }
     
@@ -40,10 +40,10 @@ public class TestClasses
     public void testNewInstanceNonAccessible() 
     {
         String p = "de.javagl.reflection.testpackage.";
-        assertNotNull(Classes.newInstanceNonAccessibleOptional(p + "TestClass_DefaultClassPrivateConstructor"));        
-        assertNotNull(Classes.newInstanceNonAccessibleOptional(p + "TestClass_DefaultClassPublicConstructor"));        
-        assertNotNull(Classes.newInstanceNonAccessibleOptional(p + "TestClass_PublicClassPrivateConstructor"));        
-        assertNotNull(Classes.newInstanceNonAccessibleOptional(p + "TestClass_PublicClassPublicConstructor"));        
+        assertNotNull(Classes.newInstanceNonAccessibleOptional(p + "DefaultClassWithPrivateConstructor"));
+        assertNotNull(Classes.newInstanceNonAccessibleOptional(p + "DefaultClassWithPublicConstructor"));
+        assertNotNull(Classes.newInstanceNonAccessibleOptional(p + "PublicClassWithPrivateConstructor"));
+        assertNotNull(Classes.newInstanceNonAccessibleOptional(p + "PublicClassWithPublicConstructor"));
         assertNull   (Classes.newInstanceOptional(p + "_INVALID_NAME_"));
     }
     
