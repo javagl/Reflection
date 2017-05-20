@@ -35,10 +35,10 @@ import java.lang.reflect.Modifier;
  * The methods in this class are mainly intended for the use as predicates
  * via method references:
  * <pre><code>
- * List<Method> publicStaticGetters = 
+ * List&lt;Method&gt; publicStaticGetters = 
  *     Methods.getOptional(Example.class,
  *         Members::isPublic, 
- *         f -> f.getName().startsWith("get"), 
+ *         m -&gt; m.getName().startsWith("get"), 
  *         Members::isStatic);
  * </code></pre>
  */

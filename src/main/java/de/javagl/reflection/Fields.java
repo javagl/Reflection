@@ -246,7 +246,7 @@ public class Fields
     
     /**
      * Returns an unmodifiable List containing all fields that result 
-     * from a call to {@link Class#getDeclaredFields()}</code>.<br>
+     * from a call to {@link Class#getDeclaredFields()}<br>
      * <br>
      * This call covers the following fields:
      * <ul>
