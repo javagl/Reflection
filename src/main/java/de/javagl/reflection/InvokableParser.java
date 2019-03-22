@@ -111,7 +111,7 @@ class InvokableParser
         // Obtain the part before the first opening "(" bracket 
         // as a list of strings
         String header = fullString.substring(0, openingIndex);
-        List<String> headerStrings = splitHeader(header);
+        List<String> headerStrings = splitBracketed(header, ' ');
         
         // Obtain the list of type parameter names for this method
         List<String> typeParameterNames = 
@@ -125,9 +125,10 @@ class InvokableParser
         // Obtain the parameter types as a list of strings
         String parameterTypesString = 
             fullString.substring(openingIndex + 1, closingIndex);
-        String parameterTypeStringArray[] = parameterTypesString.split(",");
+        List<String> parameterTypeStringsTokens = 
+            splitBracketed(parameterTypesString, ',');
         List<String> parameterTypeStrings = new ArrayList<String>();
-        for (String s : parameterTypeStringArray)
+        for (String s : parameterTypeStringsTokens)
         {
             String st = s.trim();
             if (st.length() != 0)
@@ -178,33 +179,21 @@ class InvokableParser
     }
     
     /**
-     * Split the String that contains the header of a method or constructor
-     * into a list of tokens. The header here is the part before the first
-     * opening bracket "(" of the string that is obtained from a method by 
-     * calling {@link Method#toString()} or {@link Method#toGenericString()},
-     * or {@link Constructor#toString()} or 
-     * {@link Constructor#toGenericString()}.
-     * <br>
-     * The first entries of the returned list will be the modifiers like
-     * <code>public</code> or <code>static</code>. These may optionally
-     * be followed by ONE entry with comma-separated type parameters,
-     * enclosed in angular brackets, like <code>&lt;T, S&gt;</code>.
-     * The last element of this list will be the fully qualified method-
-     * name in the form <code>com.domain.ClassName.methodName</code>,
-     * or the fully qualified constructor name in the form
-     * <code>com.domain.ClassName</code>.
+     * Split the given string at the given delimiter, but ignoring the
+     * delimiter when it is contained in &lt;brackets&gt;.
      * 
-     * @param header The header 
-     * @return The list of tokens for the header
+     * @param string The string 
+     * @param delimiter The delimiter
+     * @return The list of tokens
      */
-    private static List<String> splitHeader(String header)
+    private static List<String> splitBracketed(String string, char delimiter)
     {
-        List<String> methodHeaders = new ArrayList<String>();
+        List<String> tokens = new ArrayList<String>();
         boolean inBrackets = false;
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < header.length(); i++)
+        for (int i = 0; i < string.length(); i++)
         {
-            char c = header.charAt(i);
+            char c = string.charAt(i);
             if (c == '<')
             {
                 inBrackets = true;
@@ -215,9 +204,9 @@ class InvokableParser
                 inBrackets = false;
                 sb.append(">");
             }
-            else if (!inBrackets && c == ' ')
+            else if (!inBrackets && c == delimiter)
             {
-                methodHeaders.add(sb.toString().trim());
+                tokens.add(sb.toString().trim());
                 sb = new StringBuilder();
             }
             else
@@ -227,14 +216,15 @@ class InvokableParser
         }
         if (sb.length() > 0)
         {
-            methodHeaders.add(sb.toString().trim());
+            tokens.add(sb.toString().trim());
         }
-        return methodHeaders;
+        return tokens;
     }
     
     /**
      * Extracts type parameter names from the given list of header elements.
-     * The given list may have been created with {@link #splitHeader(String)}.
+     * The given list may have been created with 
+     * {@link #splitBracketed(String, char)}.
      * If the given list contains a string that starts with an opening 
      * bracket <code>"&lt;"</code> and ends with a closing bracket
      * <code>"&gt;"</code>, then the part of the string that is enclosed 

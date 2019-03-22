@@ -3,6 +3,9 @@ package de.javagl.reflection;
 import static org.junit.Assert.assertEquals;
 
 import java.lang.reflect.Method;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,6 +36,16 @@ public class TestMethodsParseMethod
             MethodsTestClass_ParseMethod.class,
             "methodC", Object.class, int.class, float.class);
         testParseMethod(methodC);
+        
+        Method methodD = Methods.getMethodOptional(
+            MethodsTestClass_ParseMethod.class,
+            "methodD", List.class, Collection.class);
+        testParseMethod(methodD);
+        
+        Method methodE = Methods.getMethodOptional(
+            MethodsTestClass_ParseMethod.class,
+            "methodE", Map.class, Map.class);
+        testParseMethod(methodE);
         
     }
     

@@ -2,6 +2,7 @@ package de.javagl.reflection;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 @SuppressWarnings("javadoc")
 class MethodsTestClass_ParseMethod
@@ -25,5 +26,11 @@ class MethodsTestClass_ParseMethod
     {
         // Test method
     }
+    
+    public <T> void methodE(Map<String, Integer> mapA, Map<String, Integer> mapB)
+    {
+        // Test method
+    }
+    
     
 }
