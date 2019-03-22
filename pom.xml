@@ -10,7 +10,7 @@
     
     <groupId>de.javagl</groupId>
     <artifactId>reflection</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4-SNAPSHOT</version>
 
     <name>reflection</name>
     <description>Reflection utility classes</description>
