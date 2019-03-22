@@ -6,7 +6,14 @@ The classes in this library offer utility methods for certain common (simple)
 reflection tasks. For more sophisticated tasks like classpath scanning or
 metadata extraction, the [reflections library](https://github.com/ronmamo/reflections)
 may be used.
- 
+
+## Maven coordinates
+
+    <dependency>
+      <groupId>de.javagl</groupId>
+      <artifactId>reflection</artifactId>
+      <version>0.0.2</version>
+    </dependency> 
 
 The main classes in this library are named according to the entities that
 they operate on:
@@ -81,7 +88,19 @@ The same applies, analogously, for `Constructor` objects and the
 `Constructors#parseConstructorUnchecked` method.
 
     
+## Versions:
 
+- 0.0.3-SNAPSHOT 
+
+  ...
+
+- 0.0.2 (2019-03-22)
+  
+  Bugfix in method parser
+
+- 0.0.1 (2018-11-28)
+   
+  Initial release
 
 
   
