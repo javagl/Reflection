@@ -12,7 +12,7 @@ may be used.
     <dependency>
       <groupId>de.javagl</groupId>
       <artifactId>reflection</artifactId>
-      <version>0.0.2</version>
+      <version>0.0.4</version>
     </dependency> 
 
 The main classes in this library are named according to the entities that
@@ -90,9 +90,13 @@ The same applies, analogously, for `Constructor` objects and the
     
 ## Versions:
 
-- 0.0.3-SNAPSHOT 
+- 0.0.5-SNAPSHOT 
 
   ...
+
+- 0.0.4 (2019-03-22) 
+
+  Added option to accept type parameters in generic method strings
 
 - 0.0.2 (2019-03-22)
   
