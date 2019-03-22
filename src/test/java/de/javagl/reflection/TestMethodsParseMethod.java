@@ -20,34 +20,58 @@ import org.junit.runners.JUnit4;
 public class TestMethodsParseMethod
 {
     @Test
-    public void testParseMethod() 
+    public void testParseMethodA() 
     {
         Method methodA = Methods.getMethodOptional(
             MethodsTestClass_ParseMethod.class, 
             "methodA", Object.class, String.class);
         testParseMethod(methodA);
-        
+    }
+    
+    @Test
+    public void testParseMethodB() 
+    {
         Method methodB = Methods.getMethodOptional(
             MethodsTestClass_ParseMethod.class, 
             "methodB", Object.class, Object.class);
         testParseMethod(methodB);
-        
+    }
+    
+    @Test
+    public void testParseMethodC() 
+    {
         Method methodC = Methods.getMethodOptional(
             MethodsTestClass_ParseMethod.class,
             "methodC", Object.class, int.class, float.class);
         testParseMethod(methodC);
-        
+    }
+
+    @Test
+    public void testParseMethodD() 
+    {
         Method methodD = Methods.getMethodOptional(
             MethodsTestClass_ParseMethod.class,
             "methodD", List.class, Collection.class);
         testParseMethod(methodD);
-        
+    }
+
+    @Test
+    public void testParseMethodE() 
+    {
         Method methodE = Methods.getMethodOptional(
             MethodsTestClass_ParseMethod.class,
             "methodE", Map.class, Map.class);
         testParseMethod(methodE);
-        
     }
+
+    @Test
+    public void testParseMethodAdd() 
+    {
+        Method methodF = Methods.getMethodOptional(
+            Collection.class, "add", Object.class);
+        testParseMethod(methodF);
+    }
+
     
     /**
      * Test the {@link Methods#parseMethodUnchecked(String)} method
@@ -63,7 +87,7 @@ public class TestMethodsParseMethod
         
         String genericString = method.toGenericString();
         Method parsedFromGenericString = 
-            Methods.parseMethodUnchecked(genericString);
+            Methods.parseMethodUnchecked(genericString, true);
         assertEquals(method, parsedFromGenericString);
     }
 }

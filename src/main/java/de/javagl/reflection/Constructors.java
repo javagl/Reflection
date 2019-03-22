@@ -30,7 +30,7 @@ public class Constructors
         String fullConstructorString)
     {
         InvokableInfo invokableInfo = 
-            InvokableParser.parse(fullConstructorString);
+            InvokableParser.parse(fullConstructorString, false);
         
         // Fetch the fully qualified constructor name, which is of the form
         // com.domain.ClassName

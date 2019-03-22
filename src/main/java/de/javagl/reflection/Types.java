@@ -76,6 +76,25 @@ class Types
         return Classes.forNameUnchecked(string);
     }
     
+    /**
+     * Parse a type from the given string. The given string must either
+     * be a fully qualified class name, or the name of a primitive type,
+     * or <code>"void"</code>.
+     * 
+     * @param string The input string
+     * @return The parsed class, or <code>null</code> if the type could
+     * not be parsed
+     */
+    static Class<?> parseTypeOptional(String string)
+    {
+        Class<?> c = PRIMITIVE_TYPES_AND_VOID.get(string);
+        if (c != null)
+        {
+            return c;
+        }
+        return Classes.forNameOptional(string);
+    }
+    
     
     /**
      * Private constructor to prevent instantiation

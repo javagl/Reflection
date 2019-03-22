@@ -58,7 +58,29 @@ public class Methods
      */
     public static Method parseMethodUnchecked(String fullMethodString)
     {
-        InvokableInfo invokableInfo = InvokableParser.parse(fullMethodString);
+        return parseMethodUnchecked(fullMethodString, false);
+    }
+    
+    /**
+     * Parse the method from the given string. The given string must be
+     * the string that is obtained from a method by calling 
+     * {@link Method#toString()} or {@link Method#toGenericString()}.
+     * 
+     * @param fullMethodString The full method string
+     * @param allowTypeParameters Whether strings that are valid Java
+     * identifiers (but no recognized types) should assumed to be 
+     * the names of type parameters
+     * @return The method
+     * @throws ReflectionException If the method can not be parsed
+     * for any reason. Either because the declaring class or any parameter
+     * class can not be found, or because the method is not found, or
+     * because the input string is otherwise invalid.
+     */
+    public static Method parseMethodUnchecked(
+        String fullMethodString, boolean allowTypeParameters)
+    {
+        InvokableInfo invokableInfo = 
+            InvokableParser.parse(fullMethodString, allowTypeParameters);
         
         // Fetch the fully qualified method name, which is of the form
         // com.example.ClassName.methodName

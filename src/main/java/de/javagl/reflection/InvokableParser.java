@@ -93,12 +93,15 @@ class InvokableParser
      * {@link Constructor#toGenericString()}.
      * 
      * @param fullString The full string
+     * @param allowTypeParameters Whether strings that are Java identifiers
+     * and appear as types should assumed to be type parameter names, and
+     * treated as <code>Object.class</code> type
      * @return The {@link InvokableInfo}
      * @throws ReflectionException If the invokable can not be parsed
      * for any reason. Either because any parameter type can not be 
      * parsed, or because the input string is otherwise invalid.
      */
-    static InvokableInfo parse(String fullString)
+    static InvokableInfo parse(String fullString, boolean allowTypeParameters)
     {
         int openingIndex = fullString.indexOf('(');
         int closingIndex = fullString.indexOf(')');
@@ -131,7 +134,7 @@ class InvokableParser
         for (String s : parameterTypeStringsTokens)
         {
             String st = s.trim();
-            if (st.length() != 0)
+            if (!st.isEmpty())
             {
                 parameterTypeStrings.add(st);
             }
@@ -148,7 +151,19 @@ class InvokableParser
             else
             {
                 String typeString = removeTypeParameters(parameterTypeString);
-                Class<?> parameterType = Types.parseTypeUnchecked(typeString);
+                Class<?> parameterType = Types.parseTypeOptional(typeString);
+                if (parameterType == null)
+                {
+                    if (allowTypeParameters && isJavaIdentifier(typeString))
+                    {
+                        parameterType = Object.class;
+                    }
+                    else
+                    {
+                        throw new ReflectionException(
+                            "Not a valid type: " + typeString);
+                    }
+                }
                 parameterTypes.add(parameterType);
             }
         }
@@ -158,6 +173,33 @@ class InvokableParser
         InvokableInfo result = 
             new InvokableInfo(fullyQualifiedName, parameterTypesArray);
         return result;
+    }
+    
+    /**
+     * Returns whether the given string is a Java identifier.
+     * 
+     * @param string The string
+     * @return Whether the string is a Java identifier
+     */
+    private static boolean isJavaIdentifier(String string)
+    {
+        if (string.isEmpty())
+        {
+            return false;
+        }
+        if (!Character.isJavaIdentifierStart(string.charAt(0)))
+        {
+            return false;
+        }
+        for (int i = 1; i < string.length(); i++)
+        {
+            char c = string.charAt(i);
+            if (!Character.isJavaIdentifierPart(c))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
